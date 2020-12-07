@@ -1,9 +1,9 @@
 ThisBuild / scalaVersion := "2.13.3"
-ThisBuild / organization := "dev.usommerl"
+ThisBuild / organization := "dev.pjendrusik"
 ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.4.4"
 
 val v = new {
-  val http4s     = "0.21.11"
+  val http4s     = "0.21.13"
   val circe      = "0.13.0"
   val tapir      = "0.16.16"
   val odin       = "0.9.1"
@@ -12,7 +12,7 @@ val v = new {
   val munitCE    = "0.9.0"
 }
 
-lazy val graalnative4s = project
+lazy val gardener = project
   .in(file("."))
   .enablePlugins(BuildInfoPlugin, sbtdocker.DockerPlugin, GraalVMNativeImagePlugin)
   .settings(
@@ -46,7 +46,7 @@ lazy val graalnative4s = project
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     docker / dockerfile := NativeDockerfile(file("Dockerfile")),
-    docker / imageNames := Seq(ImageName(s"ghcr.io/usommerl/${name.value}:${dockerImageTag}"))
+    docker / imageNames := Seq(ImageName(s"ghcr.io/pjendrusik/${name.value}:${dockerImageTag}"))
   )
 
 def dockerImageTag: String = {

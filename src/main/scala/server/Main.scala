@@ -4,7 +4,7 @@ import scala.concurrent.ExecutionContext.global
 
 import cats.effect._
 import cats.implicits._
-import dev.usommerl.BuildInfo
+import dev.pjendrusik.BuildInfo
 import io.odin._
 import org.http4s.HttpApp
 import org.http4s.server.blaze.BlazeServerBuilder
@@ -17,7 +17,7 @@ import pureconfig.module.catseffect.syntax._
 object Main extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] = {
-    implicit val logger = StaticLoggerBinder.baseLogger.withMinimalLevel(Level.Info)
+    implicit val logger: Logger[IO] = StaticLoggerBinder.baseLogger.withMinimalLevel(Level.Info)
     runF[IO]
   }
 
